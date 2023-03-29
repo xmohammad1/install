@@ -21,7 +21,7 @@ GITHUB_BRANCH_OR_TAG=main
         pip3 install lastversion
         mkdir -p /opt/$GITHUB_REPOSITORY
         cd /opt/$GITHUB_REPOSITORY
-        wget  $(v8.1.3 --at github --assets --filter hiddify-config.zip  hiddify/hiddify-config) -O hiddify-config.zip
+        wget -O hiddify-config.zip https://github.com/hiddify/hiddify-config/releases/download/v8.1.3/hiddify-config.zip
         unzip -o hiddify-config.zip
         rm hiddify-config.zip
         
