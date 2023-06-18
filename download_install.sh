@@ -8,13 +8,20 @@ if [ "$(id -u)" -ne 0 ]; then
         echo 'This script must be run by root' >&2
         exit 1
 fi
+
+echo "we are going to download needed files:)"
+GITHUB_REPOSITORY=hiddify-config
+GITHUB_USER=hiddify
+GITHUB_BRANCH_OR_TAG=v9.4.3
+
+# if [ ! -d "/opt/$GITHUB_REPOSITORY" ];then
         apt update
         apt upgrade -y
         apt install -y wget python3-pip dialog unzip
         pip3 install lastversion "requests<=2.29.0"
-        mkdir -p /opt/$hiddify-config
-        cd /opt/$hiddify-config
-        wget https://github.com/hiddify/hiddify-config/releases/download/v9.4.3/hiddify-config.zip
+        mkdir -p /opt/$GITHUB_REPOSITORY
+        cd /opt/$GITHUB_REPOSITORY
+        wget https://github.com/hiddify/hiddify-config/archive/refs/tags/v9.4.3.zip
         unzip -o hiddify-config.zip
         rm hiddify-config.zip
         
@@ -27,5 +34,5 @@ echo "/opt/hiddify-config/menu.sh">>~/.bashrc
 echo "cd /opt/hiddify-config/">>~/.bashrc
 
 read -p "Press any key to go  to menu" -n 1 key
-cd /opt/$hiddify-config
+cd /opt/$GITHUB_REPOSITORY
 bash menu.sh
